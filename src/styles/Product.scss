@@ -1,0 +1,30 @@
+
+.button {
+    margin: 10px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    width: 20rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+    @media only screen and (max-width: 37.5em) {
+      }
+
+    p {
+        color: black;
+    }
+}
+.image {
+    width: 100%;
+    height: auto;
+
+    &-container {
+        position: relative;
+        width: 90%;
+        height: 45%;
+        overflow: hidden;
+    }
+}

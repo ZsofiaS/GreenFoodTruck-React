@@ -1,3 +1,19 @@
+[![Build Status](https://travis-ci.com/ZsofiaS/GreenFoodTruck-React.svg?branch=master)](https://travis-ci.org/ZsofiaS/GreenFoodTruck-React)
+
+# Green Food Truck - in progress
+
+An app to follow sales and stock levels of a local foodtruck.
+
+Tech stack: 
+* React 
+* Redux
+* Firebase 
+* Recharts
+* Sass
+* ESLint
+* Jest
+* Enzyme
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

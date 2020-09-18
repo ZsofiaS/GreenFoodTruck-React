@@ -2,8 +2,8 @@ import React from 'react';
 import '../styles/Product.scss';
 import PropTypes from 'prop-types';
 
-const Product = ({ name, price, img }) => (
-  <div role="button" tabIndex={0} className="button">
+const Product = ({ name, price, img, printProduct }) => (
+  <div role="button" tabIndex={0} className="button" onClick={printProduct}>
     <div className="image-container">
       <img src={img} alt={name} className="image" />
     </div>
@@ -16,6 +16,7 @@ Product.propTypes = {
   name: PropTypes.string,
   price: PropTypes.number,
   img: PropTypes.string,
+  printProduct: PropTypes.func,
 };
 
 export default Product;

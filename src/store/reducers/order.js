@@ -1,11 +1,13 @@
 /* eslint-disable no-case-declarations */
 import { products } from '../../constants/Products';
 import ProductAdded from '../../models/ProductAdded';
+import OrderAdded from '../../models/OrderAdded';
 
 const initialState = {
   products,
   order: {},
   totalAmount: 0,
+  orders: [],
 };
 
 const orderReducer = (state = initialState, action) => {
@@ -41,6 +43,17 @@ const orderReducer = (state = initialState, action) => {
       };
     case 'CANCEL_ORDER':
       return { ...state, order: {}, totalAmount: 0 };
+    case 'SAVE_ORDER':
+      const currentOrder = action.products;
+      const { total } = action;
+      const date = new Date().toString();
+      const orderToBeAdded = new OrderAdded(currentOrder, total, date);
+      return {
+        ...state,
+        order: {},
+        totalAmount: 0,
+        orders: [...state.orders, orderToBeAdded],
+      };
     default:
       return state;
   }

@@ -3,3 +3,8 @@ export const addProduct = (item) => ({
   product: item,
 });
 export const cancelOrder = () => ({ type: 'CANCEL_ORDER' });
+export const saveOrder = (items, sum) => ({
+  type: 'SAVE_ORDER',
+  products: items,
+  total: sum,
+});

@@ -8,6 +8,10 @@ const OrderItem = ({ quantity, name, sum }) => (
   </p>
 );
 
-OrderItem.propTypes = {};
+OrderItem.propTypes = {
+  quantity: PropTypes.number,
+  name: PropTypes.string,
+  sum: PropTypes.number,
+};
 
 export default OrderItem;

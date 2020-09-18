@@ -1,8 +1,10 @@
+/* eslint-disable jsx-a11y/interactive-supports-focus */
 import React from 'react';
 import PropTypes from 'prop-types';
+import '../styles/Button.scss';
 
 const Button = ({ cancelBill, text }) => (
-  <div role="button" tabIndex={0} onClick={cancelBill}>
+  <div role="button" onClick={cancelBill} className="button">
     {text}
   </div>
 );

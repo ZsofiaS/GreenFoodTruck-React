@@ -1,11 +1,7 @@
-$backgroundColor: #282c34;
-$lime: #bada55;
-
 .App {
   text-align: center;
 
-  &-main {
-    background-color: $backgroundColor;
+  &-input {
     display: flex;
     justify-content: center;
     font-size: 1.8rem;
@@ -14,5 +10,10 @@ $lime: #bada55;
     @media only screen and (max-width: 37.5em) {
       flex-wrap: wrap;
     }
+  }
+
+  &-checkout {
+    display: flex;
+    justify-content: space-around;
   }
 }

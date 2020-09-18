@@ -3,7 +3,7 @@ import '../styles/Product.scss';
 import PropTypes from 'prop-types';
 
 const Product = ({ name, price, img, addProduct }) => (
-  <div role="button" tabIndex={0} className="button" onClick={addProduct}>
+  <div role="button" tabIndex={0} className="card" onClick={addProduct}>
     <div className="image-container">
       <img src={img} alt={name} className="image" />
     </div>

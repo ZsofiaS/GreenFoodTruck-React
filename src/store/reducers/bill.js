@@ -13,6 +13,8 @@ const billsReducer = (state = initialState, action) => {
         (product) => product.id === action.id
       );
       return { ...state, bill: state.bill.concat(addedProduct) };
+    case 'CANCEL_BILL':
+      return { ...state, bill: [] };
     default:
       return state;
   }

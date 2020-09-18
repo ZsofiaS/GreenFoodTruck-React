@@ -3,15 +3,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import '../styles/Button.scss';
 
-const Button = ({ cancelBill, text }) => (
-  <div role="button" onClick={cancelBill} className="button">
+const Button = ({ cancelOrder, text }) => (
+  <div role="button" onClick={cancelOrder} className="button">
     {text}
   </div>
 );
 
 Button.propTypes = {
   text: PropTypes.string,
-  cancelBill: PropTypes.func,
+  cancelOrder: PropTypes.func,
 };
 
 export default Button;

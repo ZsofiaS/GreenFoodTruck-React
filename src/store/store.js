@@ -1,8 +1,8 @@
 import { createStore, combineReducers } from 'redux';
-import billsReducer from './reducers/bill';
+import orderReducer from './reducers/order';
 
 const rootReducer = combineReducers({
-  bills: billsReducer,
+  order: orderReducer,
 });
 
 const store = createStore(rootReducer);

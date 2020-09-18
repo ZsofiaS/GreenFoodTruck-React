@@ -6,18 +6,18 @@ const initialState = {
   bill: [],
 };
 
-const billsReducer = (state = initialState, action) => {
+const orderReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'ADD_PRODUCT':
       const addedProduct = state.products.find(
         (product) => product.id === action.id
       );
       return { ...state, bill: state.bill.concat(addedProduct) };
-    case 'CANCEL_BILL':
+    case 'CANCEL_ORDER':
       return { ...state, bill: [] };
     default:
       return state;
   }
 };
 
-export default billsReducer;
+export default orderReducer;

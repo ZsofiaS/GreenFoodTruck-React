@@ -1,2 +1,2 @@
 export const addProduct = (id) => ({ type: 'ADD_PRODUCT', id });
-export const cancelBill = () => ({ type: 'CANCEL_BILL' });
+export const cancelOrder = () => ({ type: 'CANCEL_ORDER' });

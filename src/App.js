@@ -1,13 +1,13 @@
 /* eslint-disable jsx-a11y/interactive-supports-focus */
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addProduct, cancelBill } from './store/actions/bill';
+import { addProduct, cancelOrder } from './store/actions/order';
 import './App.scss';
 import Product from './components/Product.js';
 import Button from './components/Button.js';
 
 const App = () => {
-  const availableProducts = useSelector((state) => state.bills.products);
+  const availableProducts = useSelector((state) => state.order.products);
 
   const dispatch = useDispatch();
 
@@ -15,9 +15,9 @@ const App = () => {
     dispatch(addProduct(id));
   };
 
-  const cancelBillHandler = () => {
+  const cancelOrderHandler = () => {
     console.log('hello');
-    dispatch(cancelBill());
+    dispatch(cancelOrder());
   };
 
   return (
@@ -38,7 +38,7 @@ const App = () => {
           role="button"
           tabIndex={0}
           className="button"
-          cancelBill={() => cancelBillHandler()}
+          cancelOrder={() => cancelOrderHandler()}
           text="Cancel"
         />
       </section>

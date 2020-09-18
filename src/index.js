@@ -6,12 +6,7 @@ import './index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import billsReducer from './store/reducers/bills';
-
-const rootReducer = combineReducers({
-  bills: billsReducer,
-});
-
-const store = createStore(rootReducer);
+import store from './store/store';
 
 ReactDOM.render(
   <React.StrictMode>

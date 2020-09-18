@@ -11,10 +11,10 @@ const initialState = {
 const orderReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'ADD_PRODUCT':
-      const prod = action.product;
-      const productName = prod.name;
-      const productPrice = prod.price;
-      const productId = prod.id;
+      const { product } = action;
+      const productName = product.name;
+      const productPrice = product.price;
+      const productId = product.id;
 
       let productToBeAdded;
 
@@ -33,6 +33,7 @@ const orderReducer = (state = initialState, action) => {
           productPrice
         );
       }
+      console.log(action.product);
       return {
         ...state,
         order: { ...state.order, [productId]: productToBeAdded },

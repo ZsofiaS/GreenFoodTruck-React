@@ -32,7 +32,6 @@ const App = () => {
     }
     return addedProductsArray;
   });
-  const orders = useSelector((state) => state.order.orders);
   const reports = useSelector((state) => state.order.reports);
   const dispatch = useDispatch();
 

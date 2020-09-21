@@ -51,6 +51,7 @@ const App = () => {
   reports.map((report) => {
     const key = Object.keys(report)[0];
     data.push(new DailyReport(key, report[key]));
+    return true;
   });
 
   const dispatch = useDispatch();

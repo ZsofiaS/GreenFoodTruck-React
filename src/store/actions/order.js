@@ -25,8 +25,21 @@ export const fetchOrders = () => async (dispatch) => {
       )
     );
   }
-  console.log(loadedOrders);
-  dispatch({ type: 'SET_ORDERS', orders: loadedOrders });
+  const groupedOrders = loadedOrders.reduce((r, a) => {
+    r[a.date] = r[a.date] || [];
+    r[a.date].push(a);
+    return r;
+  }, Object.create(null));
+  const dailyReports = [];
+  for (const [date, orders] of Object.entries(groupedOrders)) {
+    let total = 0;
+    orders.forEach((order) => {
+      total += order.total;
+    });
+    // console.log(`Date: ${date}, total: ${total}`);
+    dailyReports.push({ [date]: total });
+  }
+  dispatch({ type: 'SET_ORDERS', orders: loadedOrders, reports: dailyReports });
 };
 export const saveOrder = (products, total, date = new Date()) => async (
   dispatch

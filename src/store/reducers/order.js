@@ -8,6 +8,7 @@ const initialState = {
   order: {},
   totalAmount: 0,
   orders: [],
+  reports: [],
 };
 
 const orderReducer = (state = initialState, action) => {
@@ -35,7 +36,6 @@ const orderReducer = (state = initialState, action) => {
           productPrice
         );
       }
-      console.log(action.product);
       return {
         ...state,
         order: { ...state.order, [productId]: productToBeAdded },
@@ -59,6 +59,7 @@ const orderReducer = (state = initialState, action) => {
       return {
         ...state,
         orders: action.orders,
+        reports: action.reports,
       };
     default:
       return state;

@@ -3,6 +3,7 @@
 /* eslint-disable jsx-a11y/interactive-supports-focus */
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import moment from 'moment';
 import {
   addProduct,
   cancelOrder,
@@ -44,7 +45,9 @@ const App = () => {
   };
 
   const saveOrderHandler = (products, total, date) => {
-    dispatch(saveOrder(products, total, date));
+    const timeNow = moment(date, 'x').format('DD-MM-YYYY');
+    console.log(timeNow);
+    dispatch(saveOrder(products, total, timeNow));
   };
 
   useEffect(() => {

@@ -13,6 +13,8 @@ import {
   Legend,
   Line,
   ResponsiveContainer,
+  BarChart,
+  Bar,
 } from 'recharts';
 import {
   addProduct,
@@ -64,6 +66,7 @@ const App = () => {
   const saveOrderHandler = (products, total, date) => {
     const timeNow = moment(date, 'x').format('DD-MM-YYYY');
     dispatch(saveOrder(products, total, timeNow));
+    dispatch(fetchOrders());
   };
 
   useEffect(() => {
@@ -122,7 +125,7 @@ const App = () => {
             <p>{order.date}</p>
           </div>
         ))} */}
-        {reports.map((report, i) => (
+        {/* {reports.map((report, i) => (
           <div key={i}>
             {Object.keys(report).map((key) => (
               <div key={key}>
@@ -132,21 +135,20 @@ const App = () => {
               </div>
             ))}
           </div>
-        ))}
+        ))} */}
       </section>
       <section className="App-chart">
         <ResponsiveContainer width="95%" height={250}>
-          <LineChart
+          <BarChart
             data={data}
             margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
           >
             <CartesianGrid strokeDasharray="3 3" vertical="false" />
             <XAxis dataKey="date" />
             <YAxis />
-            <Tooltip />
-            <Legend />
-            <Line type="monotone" dataKey="value" stroke="#8884d8" />
-          </LineChart>
+            <Tooltip formatter={(value) => `£${value}`} />
+            <Bar type="monotone" dataKey="total" fill="#8884d8" />
+          </BarChart>
         </ResponsiveContainer>
       </section>
     </div>

@@ -1,7 +1,7 @@
 class DailyReport {
   constructor(date, value) {
     this.date = date;
-    this.value = value;
+    this.total = value;
   }
 }
 

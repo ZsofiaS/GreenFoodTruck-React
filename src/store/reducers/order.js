@@ -44,15 +44,21 @@ const orderReducer = (state = initialState, action) => {
     case 'CANCEL_ORDER':
       return { ...state, order: {}, totalAmount: 0 };
     case 'SAVE_ORDER':
+      const orderId = action.id;
       const currentOrder = action.products;
       const { total } = action;
-      const date = new Date().toString();
-      const orderToBeAdded = new OrderAdded(currentOrder, total, date);
+      const { date } = action;
+      const orderToBeAdded = new OrderAdded(orderId, currentOrder, total, date);
       return {
         ...state,
         order: {},
         totalAmount: 0,
         orders: [...state.orders, orderToBeAdded],
+      };
+    case 'SET_ORDERS':
+      return {
+        ...state,
+        orders: action.orders,
       };
     default:
       return state;

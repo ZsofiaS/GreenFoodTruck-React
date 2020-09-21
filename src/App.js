@@ -1,9 +1,14 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable guard-for-in */
 /* eslint-disable jsx-a11y/interactive-supports-focus */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addProduct, cancelOrder, saveOrder } from './store/actions/order';
+import {
+  addProduct,
+  cancelOrder,
+  saveOrder,
+  fetchOrders,
+} from './store/actions/order';
 import './App.scss';
 import Product from './components/Product';
 import Button from './components/Button';
@@ -38,9 +43,13 @@ const App = () => {
     dispatch(cancelOrder());
   };
 
-  const saveOrderHandler = (products, total) => {
-    dispatch(saveOrder(products, total));
+  const saveOrderHandler = (products, total, date) => {
+    dispatch(saveOrder(products, total, date));
   };
+
+  useEffect(() => {
+    dispatch(fetchOrders());
+  }, [dispatch]);
 
   return (
     <div className="App">
@@ -79,7 +88,9 @@ const App = () => {
             role="button"
             tabIndex={0}
             className="button"
-            actionOrder={() => saveOrderHandler(addedProducts, totalAmount)}
+            actionOrder={() =>
+              saveOrderHandler(addedProducts, totalAmount, new Date())
+            }
             text="Pay"
           />
         </div>
@@ -90,13 +101,6 @@ const App = () => {
           <div key={i}>
             <p>£{order.total}</p>
             <p>{order.date}</p>
-            {order.products.map((product, j) => (
-              <div key={j}>
-                <p>
-                  {product.quantity}x {product.productName}
-                </p>
-              </div>
-            ))}
           </div>
         ))}
       </section>

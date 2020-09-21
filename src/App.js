@@ -101,10 +101,21 @@ const App = () => {
       </section>
       <section className="App-orders">
         <p>Orders:</p>
-        {orders.map((order, i) => (
+        {/* {orders.map((order, i) => (
           <div key={i}>
             <p>£{order.total}</p>
             <p>{order.date}</p>
+          </div>
+        ))} */}
+        {reports.map((report, i) => (
+          <div key={i}>
+            {Object.keys(report).map((key) => (
+              <div key={key}>
+                <p>
+                  {key} £{report[key]}
+                </p>
+              </div>
+            ))}
           </div>
         ))}
       </section>

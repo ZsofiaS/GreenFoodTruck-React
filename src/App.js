@@ -5,6 +5,16 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
 import {
+  LineChart,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+  Line,
+  ResponsiveContainer,
+} from 'recharts';
+import {
   addProduct,
   cancelOrder,
   saveOrder,
@@ -14,6 +24,7 @@ import './App.scss';
 import Product from './components/Product';
 import Button from './components/Button';
 import OrderItem from './components/OrderItem';
+import DailyReport from './models/DailyReport';
 
 const App = () => {
   const availableProducts = useSelector((state) => state.order.products);
@@ -33,6 +44,13 @@ const App = () => {
     return addedProductsArray;
   });
   const reports = useSelector((state) => state.order.reports);
+
+  const data = [];
+  reports.map((report) => {
+    const key = Object.keys(report)[0];
+    data.push(new DailyReport(key, report[key]));
+  });
+
   const dispatch = useDispatch();
 
   const addProductHandler = (product) => {
@@ -40,13 +58,11 @@ const App = () => {
   };
 
   const cancelOrderHandler = () => {
-    console.log('hello');
     dispatch(cancelOrder());
   };
 
   const saveOrderHandler = (products, total, date) => {
     const timeNow = moment(date, 'x').format('DD-MM-YYYY');
-    console.log(timeNow);
     dispatch(saveOrder(products, total, timeNow));
   };
 
@@ -117,6 +133,21 @@ const App = () => {
             ))}
           </div>
         ))}
+      </section>
+      <section className="App-chart">
+        <ResponsiveContainer width="95%" height={250}>
+          <LineChart
+            data={data}
+            margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+          >
+            <CartesianGrid strokeDasharray="3 3" vertical="false" />
+            <XAxis dataKey="date" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Line type="monotone" dataKey="value" stroke="#8884d8" />
+          </LineChart>
+        </ResponsiveContainer>
       </section>
     </div>
   );

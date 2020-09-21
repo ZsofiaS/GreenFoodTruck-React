@@ -26,7 +26,7 @@ const App = () => {
     }
     return addedProductsArray;
   });
-  // const order = useSelector((state) => state.order.orders);
+  const orders = useSelector((state) => state.order.orders);
   const dispatch = useDispatch();
 
   const addProductHandler = (product) => {
@@ -79,10 +79,26 @@ const App = () => {
             role="button"
             tabIndex={0}
             className="button"
-            actionOrder={() => saveOrderHandler()}
+            actionOrder={() => saveOrderHandler(addedProducts, totalAmount)}
             text="Pay"
           />
         </div>
+      </section>
+      <section className="App-orders">
+        <p>Orders:</p>
+        {orders.map((order, i) => (
+          <div key={i}>
+            <p>£{order.total}</p>
+            <p>{order.date}</p>
+            {order.products.map((product, j) => (
+              <div key={j}>
+                <p>
+                  {product.quantity}x {product.productName}
+                </p>
+              </div>
+            ))}
+          </div>
+        ))}
       </section>
     </div>
   );

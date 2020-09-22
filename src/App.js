@@ -48,14 +48,12 @@ const App = () => {
     return addedProductsArray;
   });
 
-  console.log(ingredients);
   const reports = useSelector((state) => state.order.reports);
 
   const dispatch = useDispatch();
 
   const addProductHandler = (product) => {
     dispatch(addProduct(product));
-    dispatch(updateIngredients(product));
   };
 
   const cancelOrderHandler = () => {
@@ -64,7 +62,7 @@ const App = () => {
 
   const saveOrderHandler = (products, total, date) => {
     const timeNow = moment(date, 'x').format('DD-MM-YYYY');
-
+    dispatch(updateIngredients(products));
     dispatch(saveOrder(products, total, timeNow));
     dispatch(fetchOrders());
   };

@@ -123,7 +123,7 @@ export const saveOrder = (products, total, date = new Date()) => async (
 //     }
 //   )
 // }
-export const updateIngredients = (product) => ({
+export const updateIngredients = (products) => ({
   type: 'UPDATE_INGREDIENTS',
-  item: product,
+  items: products,
 });

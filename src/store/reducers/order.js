@@ -40,7 +40,6 @@ const orderReducer = (state = initialState, action) => {
           ingredients
         );
       }
-      console.log(productToBeAdded);
       return {
         ...state,
         order: { ...state.order, [productId]: productToBeAdded },
@@ -51,10 +50,6 @@ const orderReducer = (state = initialState, action) => {
     case 'SAVE_ORDER':
       const orderId = action.id;
       const currentOrder = action.products;
-      // console.log(currentOrder);
-      // for each item in array,
-      // check the type & quantity
-      // decrease amounts accordingly
       const { total } = action;
       const { date } = action;
       const orderToBeAdded = new OrderAdded(orderId, currentOrder, total, date);
@@ -76,15 +71,19 @@ const orderReducer = (state = initialState, action) => {
         ingredients: action.ingredients,
       };
     case 'UPDATE_INGREDIENTS':
-      const { item } = action;
-      console.log(item.ingredients);
-      console.log(state.ingredients);
+      const { items } = action;
       const stateIngredients = state.ingredients;
       const newIngredients = {};
-      Object.entries(item.ingredients).map((ing) => {
-        // eslint-disable-next-line prefer-destructuring
-        newIngredients[ing[0]] = ing[1];
-        return true;
+      items.forEach((item) => {
+        Object.entries(item.ingredients).map((ing) => {
+          // eslint-disable-next-line prefer-destructuring
+          if (!newIngredients[ing[0]]) {
+            newIngredients[ing[0]] = ing[1] * item.quantity;
+          } else {
+            newIngredients[ing[0]] += ing[1];
+          }
+          return true;
+        });
       });
       Object.entries(newIngredients).map((ing) => {
         stateIngredients[ing[0]] -= ing[1];

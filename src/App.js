@@ -25,7 +25,6 @@ import './App.scss';
 import Product from './components/Product';
 import Button from './components/Button';
 import OrderItem from './components/OrderItem';
-import DailyReport from './models/DailyReport';
 
 const App = () => {
   const availableProducts = useSelector((state) => state.order.products);

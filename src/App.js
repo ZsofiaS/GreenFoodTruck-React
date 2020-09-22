@@ -44,13 +44,6 @@ const App = () => {
   });
   const reports = useSelector((state) => state.order.reports);
 
-  const data = [];
-  reports.map((report) => {
-    const key = Object.keys(report)[0];
-    data.push(new DailyReport(key, report[key]));
-    return true;
-  });
-
   const dispatch = useDispatch();
 
   const addProductHandler = (product) => {
@@ -138,7 +131,7 @@ const App = () => {
       <section className="App-chart">
         <ResponsiveContainer width="95%" height={250}>
           <BarChart
-            data={data}
+            data={reports}
             margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
           >
             <CartesianGrid strokeDasharray="3 3" vertical="false" />

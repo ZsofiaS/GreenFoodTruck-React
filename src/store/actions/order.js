@@ -13,7 +13,6 @@ export const fetchOrders = () => async (dispatch) => {
   );
 
   const resData = await response.json();
-  console.log(resData);
   const loadedOrders = [];
   for (const key in resData) {
     loadedOrders.push(
@@ -33,12 +32,41 @@ export const fetchOrders = () => async (dispatch) => {
   const dailyReports = [];
   for (const [date, orders] of Object.entries(groupedOrders)) {
     let total = 0;
+    let croissant = 0;
+    let coffee = 0;
+    let choc = 0;
+    let cappuccino = 0;
     orders.forEach((order) => {
+      order.products.forEach((product) => {
+        switch (product.productName) {
+          case 'Croissant' || 'croissant':
+            croissant += product.quantity;
+            break;
+          case 'Coffee' || 'coffee':
+            coffee += product.quantity;
+            break;
+          case 'Pain au chocolat' || 'choc':
+            choc += product.quantity;
+            break;
+          case 'Cappuccino' || 'cappuccino':
+            cappuccino += product.quantity;
+            break;
+          default:
+            break;
+        }
+      });
       total += order.total;
     });
-    // console.log(`Date: ${date}, total: ${total}`);
-    dailyReports.push({ [date]: total });
+    dailyReports.push({
+      date,
+      total,
+      croissant,
+      coffee,
+      choc,
+      cappuccino,
+    });
   }
+
   dispatch({ type: 'SET_ORDERS', orders: loadedOrders, reports: dailyReports });
 };
 export const saveOrder = (products, total, date = new Date()) => async (

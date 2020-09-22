@@ -19,6 +19,7 @@ const orderReducer = (state = initialState, action) => {
       const productName = product.name;
       const productPrice = product.price;
       const productId = product.id;
+      const { ingredients } = product;
 
       let productToBeAdded;
 
@@ -27,16 +28,19 @@ const orderReducer = (state = initialState, action) => {
           state.order[productId].quantity + 1,
           productPrice,
           productName,
-          state.order[productId].sum + productPrice
+          state.order[productId].sum + productPrice,
+          ingredients
         );
       } else {
         productToBeAdded = new ProductAdded(
           1,
           productPrice,
           productName,
-          productPrice
+          productPrice,
+          ingredients
         );
       }
+      console.log(productToBeAdded);
       return {
         ...state,
         order: { ...state.order, [productId]: productToBeAdded },
@@ -70,6 +74,13 @@ const orderReducer = (state = initialState, action) => {
       return {
         ...state,
         ingredients: action.ingredients,
+      };
+    case 'UPDATE_INGREDIENTS':
+      const { item } = action;
+      console.log(item.ingredients);
+      return {
+        ...state,
+        ingredients: 'yo!',
       };
     default:
       return state;

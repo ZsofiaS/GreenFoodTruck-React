@@ -21,6 +21,7 @@ import {
   saveOrder,
   fetchOrders,
   fetchIngredients,
+  updateIngredients,
 } from './store/actions/order';
 import './App.scss';
 import Product from './components/Product';
@@ -41,16 +42,20 @@ const App = () => {
         productPrice: state.order.order[key].price,
         quantity: state.order.order[key].quantity,
         sum: state.order.order[key].sum,
+        ingredients: state.order.order[key].ingredients,
       });
     }
     return addedProductsArray;
   });
+
+  console.log(ingredients);
   const reports = useSelector((state) => state.order.reports);
 
   const dispatch = useDispatch();
 
   const addProductHandler = (product) => {
     dispatch(addProduct(product));
+    dispatch(updateIngredients(product));
   };
 
   const cancelOrderHandler = () => {
@@ -59,6 +64,7 @@ const App = () => {
 
   const saveOrderHandler = (products, total, date) => {
     const timeNow = moment(date, 'x').format('DD-MM-YYYY');
+
     dispatch(saveOrder(products, total, timeNow));
     dispatch(fetchOrders());
   };
@@ -67,8 +73,6 @@ const App = () => {
     dispatch(fetchOrders());
     dispatch(fetchIngredients());
   }, [dispatch]);
-
-  console.log(ingredients);
 
   return (
     <div className="App">

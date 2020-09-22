@@ -12,7 +12,7 @@ export const fetchIngredients = () => async (dispatch) => {
     'https://green-food-truck.firebaseio.com/ingredients.json'
   );
   const resData = await response.json();
-  console.log('hello');
+  console.log(resData);
   dispatch({ type: 'GET_INGREDIENTS', ingredients: resData });
 };
 export const fetchOrders = () => async (dispatch) => {
@@ -104,3 +104,26 @@ export const saveOrder = (products, total, date = new Date()) => async (
     id: resData.name,
   });
 };
+// export const updateIngredients = (products) => async (
+//   dispatch
+// ) => {
+//   products.forEach(item => {
+
+//   })
+//   const response = await fetch(
+//     'https://green-food-truck.firebaseio.com/ingredients.json',
+//     {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify({
+
+//       })
+//     }
+//   )
+// }
+export const updateIngredients = (product) => ({
+  type: 'UPDATE_INGREDIENTS',
+  item: product,
+});

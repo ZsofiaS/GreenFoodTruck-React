@@ -10,8 +10,10 @@ import {
   YAxis,
   Tooltip,
   ResponsiveContainer,
-  BarChart,
   Bar,
+  Line,
+  ComposedChart,
+  Legend,
 } from 'recharts';
 import {
   addProduct,
@@ -130,16 +132,43 @@ const App = () => {
       </section>
       <section className="App-chart">
         <ResponsiveContainer width="95%" height={250}>
-          <BarChart
+          <ComposedChart
             data={reports}
             margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
           >
             <CartesianGrid strokeDasharray="3 3" vertical="false" />
             <XAxis dataKey="date" />
             <YAxis />
-            <Tooltip formatter={(value) => `£${value}`} />
-            <Bar type="monotone" dataKey="total" fill="#8884d8" />
-          </BarChart>
+            <Tooltip
+              formatter={(value, name) => {
+                if (name === 'total') {
+                  return `£${value}`;
+                }
+                return value;
+              }}
+            />
+            <Legend />
+            <Bar type="monotone" dataKey="total" fill="gainsboro" />
+            <Line
+              type="monotone"
+              dataKey="croissant"
+              stroke="#8884d8"
+              fill="#8884d8"
+            />
+            <Line
+              type="monotone"
+              dataKey="coffee"
+              fill="green"
+              stroke="green"
+            />
+            <Line type="monotone" dataKey="choc" fill="pink" stroke="pink" />
+            <Line
+              type="monotone"
+              dataKey="cappuccino"
+              fill="yellow"
+              stroke="yellow"
+            />
+          </ComposedChart>
         </ResponsiveContainer>
       </section>
     </div>

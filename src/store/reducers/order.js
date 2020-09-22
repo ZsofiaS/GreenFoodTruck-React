@@ -78,9 +78,21 @@ const orderReducer = (state = initialState, action) => {
     case 'UPDATE_INGREDIENTS':
       const { item } = action;
       console.log(item.ingredients);
+      console.log(state.ingredients);
+      const stateIngredients = state.ingredients;
+      const newIngredients = {};
+      Object.entries(item.ingredients).map((ing) => {
+        // eslint-disable-next-line prefer-destructuring
+        newIngredients[ing[0]] = ing[1];
+        return true;
+      });
+      Object.entries(newIngredients).map((ing) => {
+        stateIngredients[ing[0]] -= ing[1];
+        return true;
+      });
       return {
         ...state,
-        ingredients: 'yo!',
+        ingredients: stateIngredients,
       };
     default:
       return state;

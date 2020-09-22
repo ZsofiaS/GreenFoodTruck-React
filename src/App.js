@@ -20,6 +20,7 @@ import {
   cancelOrder,
   saveOrder,
   fetchOrders,
+  fetchIngredients,
 } from './store/actions/order';
 import './App.scss';
 import Product from './components/Product';
@@ -28,6 +29,7 @@ import OrderItem from './components/OrderItem';
 
 const App = () => {
   const availableProducts = useSelector((state) => state.order.products);
+  const ingredients = useSelector((state) => state.order.ingredients);
 
   const totalAmount = useSelector((state) => state.order.totalAmount);
   const addedProducts = useSelector((state) => {
@@ -63,7 +65,10 @@ const App = () => {
 
   useEffect(() => {
     dispatch(fetchOrders());
+    dispatch(fetchIngredients());
   }, [dispatch]);
+
+  console.log(ingredients);
 
   return (
     <div className="App">
@@ -164,11 +169,18 @@ const App = () => {
             <Line
               type="monotone"
               dataKey="cappuccino"
-              fill="yellow"
-              stroke="yellow"
+              fill="darkgrey"
+              stroke="darkgrey"
             />
           </ComposedChart>
         </ResponsiveContainer>
+      </section>
+      <section className="App-ingredients">
+        {Object.entries(ingredients).map((item) => (
+          <p>
+            {item[0]} {item[1]}
+          </p>
+        ))}
       </section>
     </div>
   );

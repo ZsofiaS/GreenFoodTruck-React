@@ -7,6 +7,14 @@ export const addProduct = (item) => ({
   product: item,
 });
 export const cancelOrder = () => ({ type: 'CANCEL_ORDER' });
+export const fetchIngredients = () => async (dispatch) => {
+  const response = await fetch(
+    'https://green-food-truck.firebaseio.com/ingredients.json'
+  );
+  const resData = await response.json();
+  console.log('hello');
+  dispatch({ type: 'GET_INGREDIENTS', ingredients: resData });
+};
 export const fetchOrders = () => async (dispatch) => {
   const response = await fetch(
     'https://green-food-truck.firebaseio.com/orders.json'
@@ -87,6 +95,7 @@ export const saveOrder = (products, total, date = new Date()) => async (
     }
   );
   const resData = await response.json();
+  console.log(resData);
   dispatch({
     type: 'SAVE_ORDER',
     products,

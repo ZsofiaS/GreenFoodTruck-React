@@ -4,6 +4,7 @@ import ProductAdded from '../../models/ProductAdded';
 import OrderAdded from '../../models/OrderAdded';
 
 const initialState = {
+  ingredients: {},
   products,
   order: {},
   totalAmount: 0,
@@ -46,6 +47,10 @@ const orderReducer = (state = initialState, action) => {
     case 'SAVE_ORDER':
       const orderId = action.id;
       const currentOrder = action.products;
+      // console.log(currentOrder);
+      // for each item in array,
+      // check the type & quantity
+      // decrease amounts accordingly
       const { total } = action;
       const { date } = action;
       const orderToBeAdded = new OrderAdded(orderId, currentOrder, total, date);
@@ -60,6 +65,11 @@ const orderReducer = (state = initialState, action) => {
         ...state,
         orders: action.orders,
         reports: action.reports,
+      };
+    case 'GET_INGREDIENTS':
+      return {
+        ...state,
+        ingredients: action.ingredients,
       };
     default:
       return state;

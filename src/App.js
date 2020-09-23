@@ -135,33 +135,13 @@ const App = () => {
           />
         </div>
       </section>
-      <section className="App-orders">
-        <p>Orders:</p>
-        {/* {orders.map((order, i) => (
-          <div key={i}>
-            <p>£{order.total}</p>
-            <p>{order.date}</p>
-          </div>
-        ))} */}
-        {/* {reports.map((report, i) => (
-          <div key={i}>
-            {Object.keys(report).map((key) => (
-              <div key={key}>
-                <p>
-                  {key} £{report[key]}
-                </p>
-              </div>
-            ))}
-          </div>
-        ))} */}
-      </section>
       <section className="App-chart">
         <ResponsiveContainer width="95%" height={250}>
           <ComposedChart
             data={reports}
             margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
           >
-            <CartesianGrid strokeDasharray="3 3" vertical="false" />
+            <CartesianGrid stroke="#f5f5f5" vertical="false" />
             <XAxis dataKey="date" />
             <YAxis />
             <Tooltip
@@ -173,25 +153,47 @@ const App = () => {
               }}
             />
             <Legend />
-            <Bar type="monotone" dataKey="total" fill="gainsboro" />
+            <Bar
+              type="monotone"
+              dataKey="total"
+              fill="gainsboro"
+              animationDuration={2000}
+            />
             <Line
               type="monotone"
               dataKey="croissant"
               stroke="#8884d8"
               fill="#8884d8"
+              dot={false}
+              strokeWidth={2}
+              animationDuration={2000}
             />
             <Line
               type="monotone"
               dataKey="coffee"
               fill="green"
               stroke="green"
+              dot={false}
+              strokeWidth={2}
+              animationDuration={2000}
             />
-            <Line type="monotone" dataKey="choc" fill="pink" stroke="pink" />
+            <Line
+              type="monotone"
+              dataKey="choc"
+              fill="pink"
+              stroke="pink"
+              dot={false}
+              strokeWidth={2}
+              animationDuration={2000}
+            />
             <Line
               type="monotone"
               dataKey="cappuccino"
               fill="darkgrey"
               stroke="darkgrey"
+              dot={false}
+              strokeWidth={2}
+              animationDuration={2000}
             />
           </ComposedChart>
         </ResponsiveContainer>

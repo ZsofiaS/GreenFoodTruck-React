@@ -199,11 +199,30 @@ const App = () => {
         </ResponsiveContainer>
       </section>
       <section className="App-ingredients">
-        {Object.entries(ingredients).map((item) => (
-          <p>
-            {item[0]} {item[1]}
-          </p>
-        ))}
+        <h1 className="App-ingredients-title">Ingredients available</h1>
+        {Object.entries(ingredients).map((item) => {
+          const name = item[0];
+          const amount = item[1];
+          const isGrams = name.split('(')[1].includes('g');
+          const isRunningLow = () => {
+            if ((isGrams && amount < 100) || (!isGrams && amount < 6)) {
+              return true;
+            }
+          };
+
+          return (
+            <div className="ingredient-container">
+              <p>
+                {name}: <span className="ingredient">{amount}</span>
+                {isRunningLow() ? (
+                  <span className="low">Low in stock</span>
+                ) : (
+                  ''
+                )}
+              </p>
+            </div>
+          );
+        })}
       </section>
     </div>
   );

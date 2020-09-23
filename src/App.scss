@@ -20,6 +20,35 @@
 
   &-chart {
     background-color: white;
+    margin: 4rem;
+    padding: 2rem 1rem;
+  }
 
+  &-ingredients {
+    background-color: white;
+    margin: 4rem;
+    padding: 2rem 1rem;
+    font-size: 1.3rem;
+    &-title {
+      font-size: 2rem;
+    }
+    .ingredient-container {
+      display: flex;
+      justify-content: center;
+      position: relative;
+    }
+    .ingredient {
+      font-size: 2.2rem;
+    }
+    .bar {
+      background-color: gainsboro;
+      height: 2rem;
+    }
+    .low {
+      color: red;
+      margin-left: 3rem;
+      margin-top: 1rem;
+      position: absolute;
+    }
   }
 }

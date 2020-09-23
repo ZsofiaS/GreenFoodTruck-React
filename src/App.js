@@ -82,7 +82,6 @@ const App = () => {
         }),
       }
     );
-    const resData = await response.json();
   };
 
   useEffect(() => {

@@ -4,7 +4,7 @@ export const products = [
     name: 'Croissant',
     price: 3,
     ingredients: {
-      Croissant: 1,
+      'Croissant (pc)': 1,
     },
     img:
       'https://dl.dropboxusercontent.com/s/fsbb6ng6o8iaaic/croissant.jpg?dl=0',
@@ -14,8 +14,8 @@ export const products = [
     name: 'Coffee',
     price: 2.5,
     ingredients: {
-      Coffee: 15,
-      Sugar: 8,
+      'Coffee (g)': 15,
+      'Sugar (g)': 8,
     },
     img: 'https://dl.dropboxusercontent.com/s/z2qlx5e26wge6sl/coffee.jpg?dl=0',
   },
@@ -24,9 +24,9 @@ export const products = [
     name: 'Cappuccino',
     price: 3,
     ingredients: {
-      Coffee: 15,
-      Sugar: 8,
-      Milk: 1,
+      'Coffee (g)': 15,
+      'Sugar (g)': 8,
+      'Milk (dl)': 1,
     },
     img:
       'https://dl.dropboxusercontent.com/s/4j2ayubqv1dz3ws/cappuccino.jpg?dl=0',
@@ -36,7 +36,7 @@ export const products = [
     name: 'Pain au chocolat',
     price: 3,
     ingredients: {
-      'Pain au chocolat': 1,
+      'Pain au chocolat (pc)': 1,
     },
     img: 'https://dl.dropboxusercontent.com/s/oea9u1090i2yihz/choc.jpg?dl=0',
   },

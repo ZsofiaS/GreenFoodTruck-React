@@ -71,19 +71,14 @@ const orderReducer = (state = initialState, action) => {
         ingredients: action.ingredients,
       };
     case 'UPDATE_INGREDIENTS':
-      const { items } = action;
+      const { item } = action;
+      console.log(state.ingredients);
       const stateIngredients = state.ingredients;
       const newIngredients = {};
-      items.forEach((item) => {
-        Object.entries(item.ingredients).map((ing) => {
-          // eslint-disable-next-line prefer-destructuring
-          if (!newIngredients[ing[0]]) {
-            newIngredients[ing[0]] = ing[1] * item.quantity;
-          } else {
-            newIngredients[ing[0]] += ing[1];
-          }
-          return true;
-        });
+      Object.entries(item.ingredients).map((ing) => {
+        // eslint-disable-next-line prefer-destructuring
+        newIngredients[ing[0]] = ing[1];
+        return true;
       });
       Object.entries(newIngredients).map((ing) => {
         stateIngredients[ing[0]] -= ing[1];

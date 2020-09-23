@@ -54,17 +54,35 @@ const App = () => {
 
   const addProductHandler = (product) => {
     dispatch(addProduct(product));
+    dispatch(updateIngredients(product));
   };
 
   const cancelOrderHandler = () => {
     dispatch(cancelOrder());
+    dispatch(fetchIngredients());
   };
 
-  const saveOrderHandler = (products, total, date) => {
+  const saveOrderHandler = (products, total, date, ingredients) => {
     const timeNow = moment(date, 'x').format('DD-MM-YYYY');
-    dispatch(updateIngredients(products));
+    saveIngredients(ingredients);
     dispatch(saveOrder(products, total, timeNow));
     dispatch(fetchOrders());
+  };
+
+  const saveIngredients = async (ingredients) => {
+    const response = await fetch(
+      'https://green-food-truck.firebaseio.com/ingredients.json',
+      {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ingredients,
+        }),
+      }
+    );
+    const resData = await response.json();
   };
 
   useEffect(() => {
@@ -110,7 +128,12 @@ const App = () => {
             tabIndex={0}
             className="button"
             actionOrder={() =>
-              saveOrderHandler(addedProducts, totalAmount, new Date())
+              saveOrderHandler(
+                addedProducts,
+                totalAmount,
+                new Date(),
+                ingredients
+              )
             }
             text="Pay"
           />

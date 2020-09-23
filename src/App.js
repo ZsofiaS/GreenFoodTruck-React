@@ -70,18 +70,15 @@ const App = () => {
   };
 
   const saveIngredients = async (ingredients) => {
-    const response = await fetch(
-      'https://green-food-truck.firebaseio.com/ingredients.json',
-      {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ingredients,
-        }),
-      }
-    );
+    await fetch('https://green-food-truck.firebaseio.com/ingredients.json', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        ingredients,
+      }),
+    });
   };
 
   useEffect(() => {

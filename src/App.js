@@ -99,42 +99,50 @@ const App = () => {
           />
         ))}
       </section>
+
       <section className="App-checkout">
-        <p>Order:</p>
-        {addedProducts.map((product, id) => (
-          <OrderItem
-            key={product.productId}
-            name={product.productName}
-            price={product.productPrice}
-            quantity={product.quantity}
-            sum={product.sum}
-          />
-        ))}
-        <p>Total: £{totalAmount}</p>
-        <div className="button-container">
-          <Button
-            role="button"
-            tabIndex={0}
-            className="button"
-            actionOrder={() => cancelOrderHandler()}
-            text="Cancel"
-          />
-          <Button
-            role="button"
-            tabIndex={0}
-            className="button"
-            actionOrder={() =>
-              saveOrderHandler(
-                addedProducts,
-                totalAmount,
-                new Date(),
-                ingredients
-              )
-            }
-            text="Pay"
-          />
+        <h1>Current Sale</h1>
+        <div className="App-checkout-container">
+          <div className="breakdown-container">
+            {addedProducts.map((product, id) => (
+              <OrderItem
+                key={product.productId}
+                name={product.productName}
+                price={product.productPrice}
+                quantity={product.quantity}
+                sum={product.sum}
+              />
+            ))}
+            <p className="total">Total: £{totalAmount}</p>
+          </div>
+          {!addedProducts.length === 0 && (
+            <div className="button-container">
+              <Button
+                role="button"
+                tabIndex={0}
+                className="button"
+                actionOrder={() => cancelOrderHandler()}
+                text="Cancel"
+              />
+              <Button
+                role="button"
+                tabIndex={0}
+                className="button"
+                actionOrder={() =>
+                  saveOrderHandler(
+                    addedProducts,
+                    totalAmount,
+                    new Date(),
+                    ingredients
+                  )
+                }
+                text="Pay"
+              />
+            </div>
+          )}
         </div>
       </section>
+
       <section className="App-chart">
         <ResponsiveContainer width="95%" height={250}>
           <ComposedChart
@@ -201,8 +209,7 @@ const App = () => {
       <section className="App-ingredients">
         <h1 className="App-ingredients-title">Ingredients available</h1>
         {Object.entries(ingredients).map((item) => {
-          const name = item[0];
-          const amount = item[1];
+          const [name, amount] = item;
           const isGrams = name.split('(')[1].includes('g');
           const isRunningLow = () => {
             if ((isGrams && amount < 100) || (!isGrams && amount < 6)) {

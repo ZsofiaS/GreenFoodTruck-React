@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import Home from './components/Home.js';
 import Ingredients from './components/Ingredients.js';
@@ -7,12 +6,6 @@ import Ingredients from './components/Ingredients.js';
 const Sales = () => (
   <div>
     <h2>Sales</h2>
-    ...
-  </div>
-);
-const Stock = () => (
-  <div>
-    <h2>Stock</h2>
     ...
   </div>
 );

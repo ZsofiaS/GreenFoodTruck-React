@@ -1,11 +1,18 @@
 import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
-import Home from './Home.js';
+import Home from './components/Home.js';
+import Ingredients from './components/Ingredients.js';
 
-const About = () => (
+const Sales = () => (
   <div>
-    <h2>About</h2>
+    <h2>Sales</h2>
+    ...
+  </div>
+);
+const Stock = () => (
+  <div>
+    <h2>Stock</h2>
     ...
   </div>
 );
@@ -15,12 +22,14 @@ const App = () => (
     <div>
       <aside>
         <Link to="/">Home</Link>
-        <Link to="/about">About</Link>
+        <Link to="/sales">Sales</Link>
+        <Link to="/stock">Stock</Link>
       </aside>
 
       <main>
         <Route exact path="/" component={Home} />
-        <Route path="/about" component={About} />
+        <Route path="/sales" component={Sales} />
+        <Route path="/stock" component={Ingredients} />
       </main>
     </div>
   </Router>

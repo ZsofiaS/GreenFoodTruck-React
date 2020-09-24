@@ -2,8 +2,8 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import { Provider } from 'react-redux';
-import Home from './Home';
-import store from './store/store';
+import Home from '../components/Home';
+import store from '../store/store';
 
 describe('renders Home component', () => {
   it('renders without crashing', () => {

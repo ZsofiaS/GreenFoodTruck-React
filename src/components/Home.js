@@ -22,11 +22,11 @@ import {
   fetchOrders,
   fetchIngredients,
   updateIngredients,
-} from './store/actions/order';
-import './App.scss';
-import Product from './components/Product';
-import Button from './components/Button';
-import OrderItem from './components/OrderItem';
+} from '../store/actions/order';
+import '../App.scss';
+import Product from './Product';
+import Button from './Button';
+import OrderItem from './OrderItem';
 
 const Home = () => {
   const availableProducts = useSelector((state) => state.order.products);
@@ -205,31 +205,6 @@ const Home = () => {
             />
           </ComposedChart>
         </ResponsiveContainer>
-      </section>
-      <section className="App-ingredients">
-        <h1 className="App-ingredients-title">Ingredients available</h1>
-        {Object.entries(ingredients).map((item) => {
-          const [name, amount] = item;
-          const isGrams = name.split('(')[1].includes('g');
-          const isRunningLow = () => {
-            if ((isGrams && amount < 100) || (!isGrams && amount < 6)) {
-              return true;
-            }
-          };
-
-          return (
-            <div className="ingredient-container">
-              <p>
-                {name}: <span className="ingredient">{amount}</span>
-                {isRunningLow() ? (
-                  <span className="low">Low in stock</span>
-                ) : (
-                  ''
-                )}
-              </p>
-            </div>
-          );
-        })}
       </section>
     </div>
   );

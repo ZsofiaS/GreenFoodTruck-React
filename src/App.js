@@ -2,13 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import Home from './components/Home.js';
 import Ingredients from './components/Ingredients.js';
-
-const Sales = () => (
-  <div>
-    <h2>Sales</h2>
-    ...
-  </div>
-);
+import Sales from './components/Sales.js';
 
 const App = () => (
   <Router>

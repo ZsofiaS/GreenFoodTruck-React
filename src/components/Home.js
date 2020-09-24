@@ -5,17 +5,6 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
 import {
-  CartesianGrid,
-  XAxis,
-  YAxis,
-  Tooltip,
-  ResponsiveContainer,
-  Bar,
-  Line,
-  ComposedChart,
-  Legend,
-} from 'recharts';
-import {
   addProduct,
   cancelOrder,
   saveOrder,
@@ -47,8 +36,6 @@ const Home = () => {
     }
     return addedProductsArray;
   });
-
-  const reports = useSelector((state) => state.order.reports);
 
   const dispatch = useDispatch();
 

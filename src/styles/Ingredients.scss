@@ -1,0 +1,32 @@
+.Ingredients {
+    margin: 4rem;
+    padding: 2rem 1rem;
+    font-size: 1.3rem;
+
+    &-title {
+        text-align: center;
+        margin: 2rem 0 3rem 0;
+    }
+
+    .ingredient-container {
+      display: flex;
+      justify-content: center;
+      position: relative;
+      width: 80%;
+      margin: 1rem auto;
+      padding: 1rem;
+      background-color: white;
+    }
+    .ingredient {
+      font-size: 2.2rem;
+    }
+    .low {
+      color: red;
+      margin-left: 3rem;
+      margin-top: 1rem;
+      position: absolute;
+    }
+    .coffee {
+        margin-right: 1rem;
+    }
+  }

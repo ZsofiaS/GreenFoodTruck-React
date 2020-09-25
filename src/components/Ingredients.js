@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import '../styles/Ingredients.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 import { fetchIngredients } from '../store/actions/order';
-import '../App.scss';
 
 const Ingredients = () => {
   const ingredients = useSelector((state) => state.order.ingredients);
@@ -12,8 +14,8 @@ const Ingredients = () => {
   }, [dispatch]);
 
   return (
-    <section className="App-ingredients">
-      <h1 className="App-ingredients-title">Ingredients available</h1>
+    <section className="Ingredients">
+      <h1 className="Ingredients-title">Ingredients available</h1>
       {Object.entries(ingredients).map((item) => {
         const [name, amount] = item;
         const isGrams = name.split('(')[1].includes('g');
@@ -26,6 +28,12 @@ const Ingredients = () => {
         return (
           <div className="ingredient-container">
             <p>
+              <FontAwesomeIcon
+                className="coffee"
+                icon={faCoffee}
+                size="lg"
+                color="gainsboro"
+              />
               {name}: <span className="ingredient">{amount}</span>
               {isRunningLow() ? <span className="low">Low in stock</span> : ''}
             </p>

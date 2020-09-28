@@ -30,7 +30,7 @@ const Sales = () => {
             data={reports}
             margin={{ top: 5, right: 30, left: 0, bottom: 5 }}
           >
-            <CartesianGrid stroke="#f5f5f5" vertical="false" />
+            <CartesianGrid stroke="#f5f5f5" />
             <XAxis dataKey="date" stroke="lightgray" />
             <YAxis stroke="lightgray" />
             <Tooltip

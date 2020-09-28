@@ -14,7 +14,7 @@ describe('renders Product component', () => {
   });
   it('receives price prop', () => {
     const product2 = shallow(<Product price="2.5" />);
-    const price = <p>2.5</p>;
+    const price = <p>£2.5</p>;
     expect(product2.contains(price)).toEqual(true);
   });
 });

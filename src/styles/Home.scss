@@ -8,9 +8,13 @@
         color: white;
         padding: 4rem;
     
-        @media only screen and (max-width: 37.5em) {
+        @media only screen and (max-width: 50em) {
           flex-wrap: wrap;
+          padding: 4rem 11rem;
         }
+        @media only screen and (max-width: 37.50em) {
+            padding: 4rem;
+          }
       }
 
     &-checkout {
@@ -23,7 +27,7 @@
         border-radius: 5px;
 
         h1 {
-            margin: 2rem 0;
+            margin: 2rem;
         }
 
         &-container {

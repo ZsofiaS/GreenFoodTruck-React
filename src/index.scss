@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Work+Sans&family=Lato');
+
 $backgroundColor: #282c34;
 $lightGrey: #f1f1f1;
 
@@ -19,11 +21,7 @@ html {
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Work Sans', sans-serif;
   box-sizing: border-box;
   background-color: $lightGrey;
   //padding: 3rem;

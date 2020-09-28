@@ -24,7 +24,7 @@ const Sales = () => {
   return (
     <section className="Sales">
       <div className="Sales-chart">
-        <h1>Total Sales (£)</h1>
+        <h1>Total sales (£)</h1>
         <ResponsiveContainer width="100%" height={250}>
           <ComposedChart
             data={reports}
@@ -53,7 +53,7 @@ const Sales = () => {
         </ResponsiveContainer>
       </div>
       <div className="Sales-chart">
-        <h1>Total Sale of Products (pc)</h1>
+        <h1>Total products sold (pc)</h1>
         <ResponsiveContainer width="100%" height={250}>
           <ComposedChart
             data={reports}

@@ -19,7 +19,7 @@ const App = () => (
           <FontAwesomeIcon
             className="icon"
             icon={faHome}
-            size="md"
+            size="sm"
             color="white"
           />
           Home
@@ -28,7 +28,7 @@ const App = () => (
           <FontAwesomeIcon
             className="icon"
             icon={faPoundSign}
-            size="md"
+            size="sm"
             color="white"
           />
           Sales
@@ -37,7 +37,7 @@ const App = () => (
           <FontAwesomeIcon
             className="icon"
             icon={faShoppingBasket}
-            size="md"
+            size="sm"
             color="white"
           />
           Stock

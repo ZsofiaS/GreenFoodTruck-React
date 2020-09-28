@@ -12,7 +12,7 @@ import {
   fetchIngredients,
   updateIngredients,
 } from '../store/actions/order';
-import '../App.scss';
+import '../styles/Home.scss';
 import Product from './Product';
 import Button from './Button';
 import OrderItem from './OrderItem';
@@ -74,8 +74,8 @@ const Home = () => {
   }, [dispatch]);
 
   return (
-    <div className="App">
-      <section className="App-input">
+    <div className="Home">
+      <section className="Home-input">
         {availableProducts.map((product, id) => (
           <Product
             key={id}
@@ -87,9 +87,9 @@ const Home = () => {
         ))}
       </section>
 
-      <section className="App-checkout">
+      <section className="Home-checkout">
         <h1>Current Sale</h1>
-        <div className="App-checkout-container">
+        <div className="Home-checkout-container">
           <div className="breakdown-container">
             {addedProducts.map((product, id) => (
               <OrderItem
@@ -108,13 +108,6 @@ const Home = () => {
                 role="button"
                 tabIndex={0}
                 className="button"
-                actionOrder={() => cancelOrderHandler()}
-                text="Cancel"
-              />
-              <Button
-                role="button"
-                tabIndex={0}
-                className="button"
                 actionOrder={() =>
                   saveOrderHandler(
                     addedProducts,
@@ -124,6 +117,13 @@ const Home = () => {
                   )
                 }
                 text="Pay"
+              />
+              <Button
+                role="button"
+                tabIndex={0}
+                className="button"
+                actionOrder={() => cancelOrderHandler()}
+                text="Cancel"
               />
             </div>
           )}

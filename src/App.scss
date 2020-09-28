@@ -1,62 +1,17 @@
 h1 {
   font-size: 2rem;
 }
-
-.App {
-  text-align: center;
-
-  &-input {
-    display: flex;
-    justify-content: center;
-    font-size: 1.8rem;
-    color: white;
-
-    @media only screen and (max-width: 37.5em) {
-      flex-wrap: wrap;
-    }
-  }
-
-  &-checkout {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    background-color: white;
-    margin: 4rem;
-    padding: 2rem 1rem;
-
-    &-container {
-      display: flex;
-      justify-content: space-evenly;
-    }
-
-    .breakdown-container {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: center;
-      font-size: 1.6rem;
-
-      .total {
-        margin: 0.5rem 0;
-        padding-top: 0.5rem;
-        border-top: 1px solid gainsboro;
-      }
-    }
-  }
-  &-navbar {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    padding: 1rem;
-    background-color: #993399;
-  }
-
+.navbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 1rem;
+  background-color: #993399;
   &-link {
     text-decoration: none;
     font-size: 2rem;
     color: white;
   }
-
 }
 .icon {
   margin-right: 1rem;

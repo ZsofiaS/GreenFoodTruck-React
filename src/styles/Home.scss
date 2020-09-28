@@ -1,0 +1,50 @@
+.Home {
+    text-align: center;
+
+    &-input {
+        display: flex;
+        justify-content: center;
+        font-size: 1.8rem;
+        color: white;
+        padding: 4rem;
+    
+        @media only screen and (max-width: 37.5em) {
+          flex-wrap: wrap;
+        }
+      }
+
+    &-checkout {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        background-color: white;
+        margin: 4rem;
+        padding: 2rem 1rem;
+        border-radius: 5px;
+
+        h1 {
+            margin: 2rem 0;
+        }
+
+        &-container {
+            display: flex;
+            justify-content: space-evenly;
+            .breakdown-container {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: center;
+                font-size: 1.6rem;
+        
+                .total {
+                margin: 0.5rem 0;
+                padding-top: 0.5rem;
+                border-top: 1px solid gainsboro;
+                width: 100%;
+                text-align: left;
+                font-size: 2rem;
+                }
+            }
+        }
+    }
+}

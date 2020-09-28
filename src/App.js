@@ -9,12 +9,13 @@ import {
 import Home from './components/Home.js';
 import Ingredients from './components/Ingredients.js';
 import Sales from './components/Sales.js';
+import './App.scss';
 
 const App = () => (
   <Router>
     <div>
-      <aside className="App-navbar">
-        <Link className="App-link" to="/">
+      <aside className="navbar">
+        <Link className="navbar-link" to="/">
           <FontAwesomeIcon
             className="icon"
             icon={faHome}
@@ -23,7 +24,7 @@ const App = () => (
           />
           Home
         </Link>
-        <Link className="App-link" to="/sales">
+        <Link className="navbar-link" to="/sales">
           <FontAwesomeIcon
             className="icon"
             icon={faPoundSign}
@@ -32,7 +33,7 @@ const App = () => (
           />
           Sales
         </Link>
-        <Link className="App-link" to="/stock">
+        <Link className="navbar-link" to="/stock">
           <FontAwesomeIcon
             className="icon"
             icon={faShoppingBasket}

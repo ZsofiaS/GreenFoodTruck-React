@@ -32,7 +32,7 @@ const Ingredients = () => {
                 className="coffee"
                 icon={faCoffee}
                 size="lg"
-                color="gainsboro"
+                color="#993399"
               />
               {name}: <span className="ingredient">{amount}</span>
               {isRunningLow() ? <span className="low">Low in stock</span> : ''}

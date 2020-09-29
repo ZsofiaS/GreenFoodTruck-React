@@ -99,8 +99,8 @@ const Ingredients = () => {
                 color="#993399"
               />
               {name}: <span className="ingredient">{amount}</span>
-              {isRunningLow() ? <span className="low">Low in stock</span> : ''}
             </p>
+            {isRunningLow() ? <span className="low">Low in stock</span> : ''}
             <Button text="Purchase" actionOrder={() => makePurchase(item)} />
           </div>
         );

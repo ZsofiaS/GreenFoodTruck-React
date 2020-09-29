@@ -24,8 +24,9 @@
       background-color: white;
       border-radius: 5px;
 
-      @media only screen and (max-width: 37.50em) {
-        width: 100%;
+      @media only screen and (max-width: 40em) {
+        // width: 100%;
+        flex-direction: column;
       }
       @media only screen and (max-width: 25em) {
         flex-direction: column;
@@ -42,9 +43,10 @@
     }
     .low {
       color: red;
-      margin-left: 3rem;
-      margin-top: 1rem;
-      position: absolute;
+      margin: 0.8rem auto 0.5rem auto;
+     // margin-left: 1rem;
+      // margin-top: 1rem;
+      //position: absolute;
     }
     .coffee {
         margin-right: 1rem;

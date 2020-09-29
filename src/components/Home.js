@@ -57,7 +57,7 @@ const Home = () => {
   };
 
   const saveIngredients = async (ingredients) => {
-    await fetch('https://green-food-truck.firebaseio.com/ingredients.json', {
+    await fetch(process.env.REACT_APP_INGREDIENTS_URL, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

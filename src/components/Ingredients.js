@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import '../styles/Ingredients.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -6,7 +6,8 @@ import {
   faCoffee,
   faMinus,
   faPlus,
-  faCloud,
+  faCheckCircle,
+  faWindowClose,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { fetchIngredients } from '../store/actions/order';
@@ -57,13 +58,25 @@ const Ingredients = () => {
     }
   };
 
+  const purchaseIngredient = async () => {
+    ingredients[selected[0]] += purchased;
+    await fetch(process.env.REACT_APP_INGREDIENTS_URL, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        ingredients,
+      }),
+    });
+    toggleHide();
+  };
+
   useEffect(() => {
     dispatch(fetchIngredients());
     // document.addEventListener('mousedown', detectClickOutside);
     // return () => document.removeEventListener('mousedown', detectClickOutside);
   }, [dispatch]);
-
-  console.log(selected);
 
   return (
     <section className="Ingredients">
@@ -111,10 +124,16 @@ const Ingredients = () => {
             onClick={increment}
           />
           <FontAwesomeIcon
-            icon={faCloud}
+            icon={faWindowClose}
             size="lg"
             color="#993399"
             onClick={toggleHide}
+          />
+          <FontAwesomeIcon
+            icon={faCheckCircle}
+            size="lg"
+            color="#993399"
+            onClick={purchaseIngredient}
           />
         </div>
       ) : (

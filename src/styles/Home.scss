@@ -10,11 +10,14 @@
     
         @media only screen and (max-width: 50em) {
           flex-wrap: wrap;
-          padding: 4rem 11rem;
+          padding: 4rem 10rem;
         }
         @media only screen and (max-width: 37.50em) {
-            padding: 4rem;
+            padding: 3rem;
           }
+        @media only screen and (max-width: 28em) {
+            padding: 2rem;
+        }
       }
 
     &-checkout {
@@ -22,9 +25,18 @@
         flex-direction: column;
         justify-content: space-around;
         background-color: white;
-        margin: 4rem;
+        margin: 4rem auto;
         padding: 2rem 1rem;
         border-radius: 5px;
+        width: 80%;
+
+        @media only screen and (max-width: 50em) {
+            width: 90%;
+        }
+        @media only screen and (max-width: 19em) {
+            width: 95%; 
+        }
+        
 
         h1 {
             margin: 2rem;
@@ -33,6 +45,8 @@
         &-container {
             display: flex;
             justify-content: space-evenly;
+
+            
             .breakdown-container {
                 display: flex;
                 flex-direction: column;

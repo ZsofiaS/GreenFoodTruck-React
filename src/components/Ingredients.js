@@ -6,7 +6,7 @@ import {
   faCoffee,
   faMinus,
   faPlus,
-  faCheckCircle,
+  faCheck,
   faWindowClose,
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -108,33 +108,32 @@ const Ingredients = () => {
       })}
       {!hidden ? (
         <div className="modal">
-          <h1>Open!</h1>
-          <p>{selected[0]}</p>
-          <FontAwesomeIcon
-            icon={faMinus}
-            size="lg"
-            color="#993399"
-            onClick={decrement}
-          />
-          <p>{purchased}</p>
-          <FontAwesomeIcon
-            icon={faPlus}
-            size="lg"
-            color="#993399"
-            onClick={increment}
-          />
-          <FontAwesomeIcon
-            icon={faWindowClose}
-            size="lg"
-            color="#993399"
-            onClick={toggleHide}
-          />
-          <FontAwesomeIcon
-            icon={faCheckCircle}
-            size="lg"
-            color="#993399"
-            onClick={purchaseIngredient}
-          />
+          <div className="modal-content">
+            <p>{selected[0]}</p>
+            <p>{purchased}</p>
+            <div className="plusMinus">
+              <FontAwesomeIcon
+                icon={faMinus}
+                size="lg"
+                color="#993399"
+                onClick={decrement}
+              />
+              <FontAwesomeIcon
+                icon={faPlus}
+                size="lg"
+                color="#993399"
+                onClick={increment}
+              />
+            </div>
+            <FontAwesomeIcon
+              icon={faWindowClose}
+              size="lg"
+              color="#993399"
+              onClick={toggleHide}
+              className="closingButton"
+            />
+            <Button text="Purchase" actionOrder={() => purchaseIngredient} />
+          </div>
         </div>
       ) : (
         ''

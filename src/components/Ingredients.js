@@ -6,7 +6,6 @@ import {
   faCoffee,
   faMinus,
   faPlus,
-  faCheck,
   faWindowClose,
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -110,7 +109,7 @@ const Ingredients = () => {
         <div className="modal">
           <div className="modal-content">
             <p>{selected[0]}</p>
-            <p>{purchased}</p>
+            <p className="amount">{purchased}</p>
             <div className="plusMinus">
               <FontAwesomeIcon
                 icon={faMinus}

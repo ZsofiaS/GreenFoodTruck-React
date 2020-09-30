@@ -68,6 +68,7 @@ const Ingredients = () => {
         ingredients,
       }),
     });
+
     toggleHide();
   };
 
@@ -131,7 +132,7 @@ const Ingredients = () => {
               onClick={toggleHide}
               className="closingButton"
             />
-            <Button text="Purchase" actionOrder={() => purchaseIngredient} />
+            <Button text="Purchase" actionOrder={() => purchaseIngredient()} />
           </div>
         </div>
       ) : (

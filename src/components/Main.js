@@ -12,7 +12,7 @@ const Main = () => {
     auth.onAuthStateChanged((user) => {
       if (user) history.push('/home');
     });
-  }, []);
+  });
 
   return (
     <div>

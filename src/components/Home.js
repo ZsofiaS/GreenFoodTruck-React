@@ -17,6 +17,7 @@ import '../styles/Home.scss';
 import Product from './Product';
 import Button from './Button';
 import OrderItem from './OrderItem';
+import Navbar from './Navbar';
 import { auth } from '../firebase/firebaseConfig';
 
 const Home = () => {
@@ -81,62 +82,65 @@ const Home = () => {
   }, [dispatch, history]);
 
   return (
-    <div className="Home">
-      <section className="Home-input">
-        {availableProducts.map((product, id) => (
-          <Product
-            key={id}
-            name={product.name}
-            price={product.price}
-            img={product.img}
-            addProduct={() => addProductHandler(product)}
-          />
-        ))}
-      </section>
+    <>
+      <Navbar />
+      <div className="Home">
+        <section className="Home-input">
+          {availableProducts.map((product, id) => (
+            <Product
+              key={id}
+              name={product.name}
+              price={product.price}
+              img={product.img}
+              addProduct={() => addProductHandler(product)}
+            />
+          ))}
+        </section>
 
-      <section className="Home-checkout">
-        <h1>Current Sale</h1>
-        <div className="Home-checkout-container">
-          <div className="breakdown-container">
-            {addedProducts.map((product, id) => (
-              <OrderItem
-                key={product.productId}
-                name={product.productName}
-                price={product.productPrice}
-                quantity={product.quantity}
-                sum={product.sum}
-              />
-            ))}
-            <p className="total">Total: £{totalAmount}</p>
-          </div>
-          {addedProducts.length !== 0 && (
-            <div className="button-container">
-              <Button
-                role="button"
-                tabIndex={0}
-                className="button"
-                actionOrder={() =>
-                  saveOrderHandler(
-                    addedProducts,
-                    totalAmount,
-                    new Date(),
-                    ingredients
-                  )
-                }
-                text="Pay"
-              />
-              <Button
-                role="button"
-                tabIndex={0}
-                className="button"
-                actionOrder={() => cancelOrderHandler()}
-                text="Cancel"
-              />
+        <section className="Home-checkout">
+          <h1>Current Sale</h1>
+          <div className="Home-checkout-container">
+            <div className="breakdown-container">
+              {addedProducts.map((product, id) => (
+                <OrderItem
+                  key={product.productId}
+                  name={product.productName}
+                  price={product.productPrice}
+                  quantity={product.quantity}
+                  sum={product.sum}
+                />
+              ))}
+              <p className="total">Total: £{totalAmount}</p>
             </div>
-          )}
-        </div>
-      </section>
-    </div>
+            {addedProducts.length !== 0 && (
+              <div className="button-container">
+                <Button
+                  role="button"
+                  tabIndex={0}
+                  className="button"
+                  actionOrder={() =>
+                    saveOrderHandler(
+                      addedProducts,
+                      totalAmount,
+                      new Date(),
+                      ingredients
+                    )
+                  }
+                  text="Pay"
+                />
+                <Button
+                  role="button"
+                  tabIndex={0}
+                  className="button"
+                  actionOrder={() => cancelOrderHandler()}
+                  text="Cancel"
+                />
+              </div>
+            )}
+          </div>
+        </section>
+      </div>
+    </>
   );
 };
 

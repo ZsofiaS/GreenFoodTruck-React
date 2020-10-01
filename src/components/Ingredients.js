@@ -11,6 +11,7 @@ import {
 
 import { fetchIngredients } from '../store/actions/order';
 import Button from './Button.js';
+import Navbar from './Navbar.js';
 
 const Ingredients = () => {
   const ingredients = useSelector((state) => state.order.ingredients);
@@ -79,66 +80,72 @@ const Ingredients = () => {
   }, [dispatch]);
 
   return (
-    <section className="Ingredients">
-      <h1 className="Ingredients-title">Ingredients available</h1>
-      {Object.entries(ingredients).map((item) => {
-        const [name, amount] = item;
-        const isGrams = name.split('(')[1].includes('g');
-        const isRunningLow = () => {
-          if ((isGrams && amount < 100) || (!isGrams && amount < 6)) {
-            return true;
-          }
-        };
+    <>
+      <Navbar />
+      <section className="Ingredients">
+        <h1 className="Ingredients-title">Ingredients available</h1>
+        {Object.entries(ingredients).map((item) => {
+          const [name, amount] = item;
+          const isGrams = name.split('(')[1].includes('g');
+          const isRunningLow = () => {
+            if ((isGrams && amount < 100) || (!isGrams && amount < 6)) {
+              return true;
+            }
+          };
 
-        return (
-          <div className="ingredient-container" key={name}>
-            <p>
+          return (
+            <div className="ingredient-container" key={name}>
+              <p>
+                <FontAwesomeIcon
+                  className="coffee"
+                  icon={faCoffee}
+                  size="lg"
+                  color="#993399"
+                />
+                {name}: <span className="ingredient">{amount}</span>
+              </p>
+              {isRunningLow() ? <span className="low">Low in stock</span> : ''}
+              <Button text="Purchase" actionOrder={() => makePurchase(item)} />
+            </div>
+          );
+        })}
+        {!hidden ? (
+          <div className="modal">
+            <div className="modal-content">
+              <p>{selected[0]}</p>
+              <p className="amount">{purchased}</p>
+              <div className="plusMinus">
+                <FontAwesomeIcon
+                  icon={faMinus}
+                  size="lg"
+                  color="#993399"
+                  onClick={decrement}
+                />
+                <FontAwesomeIcon
+                  icon={faPlus}
+                  size="lg"
+                  color="#993399"
+                  onClick={increment}
+                />
+              </div>
               <FontAwesomeIcon
-                className="coffee"
-                icon={faCoffee}
+                icon={faWindowClose}
                 size="lg"
                 color="#993399"
+                onClick={toggleHide}
+                className="closingButton"
               />
-              {name}: <span className="ingredient">{amount}</span>
-            </p>
-            {isRunningLow() ? <span className="low">Low in stock</span> : ''}
-            <Button text="Purchase" actionOrder={() => makePurchase(item)} />
-          </div>
-        );
-      })}
-      {!hidden ? (
-        <div className="modal">
-          <div className="modal-content">
-            <p>{selected[0]}</p>
-            <p className="amount">{purchased}</p>
-            <div className="plusMinus">
-              <FontAwesomeIcon
-                icon={faMinus}
-                size="lg"
-                color="#993399"
-                onClick={decrement}
-              />
-              <FontAwesomeIcon
-                icon={faPlus}
-                size="lg"
-                color="#993399"
-                onClick={increment}
+              <Button
+                text="Purchase"
+                actionOrder={() => purchaseIngredient()}
               />
             </div>
-            <FontAwesomeIcon
-              icon={faWindowClose}
-              size="lg"
-              color="#993399"
-              onClick={toggleHide}
-              className="closingButton"
-            />
-            <Button text="Purchase" actionOrder={() => purchaseIngredient()} />
           </div>
-        </div>
-      ) : (
-        ''
-      )}
-    </section>
+        ) : (
+          ''
+        )}
+      </section>
+    </>
   );
 };
 

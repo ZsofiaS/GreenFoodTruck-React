@@ -1,7 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
-import withFirebaseAuth from 'react-with-firebase-auth';
-import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {

@@ -1,0 +1,27 @@
+$purple: #993399;
+
+.navbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1.5rem;
+    background-color: $purple;
+    &-link {
+      text-decoration: none;
+      font-size: 2rem;
+      color: white;
+ 
+    }
+    .logoutButton {
+        font-family: 'Work Sans', sans-serif;
+        font-size: 2rem;
+        color: $purple;
+        font-weight: bold;
+        padding: 0.2rem 0.5rem;
+    }
+    .icon {
+        margin-right: 0.8rem;
+      }
+  }
+

@@ -2,11 +2,13 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
+import '../styles/Navbar.scss';
 
 import {
   faHome,
   faShoppingBasket,
   faPoundSign,
+  faSignOutAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import { auth } from '../firebase/firebaseConfig';
 
@@ -52,6 +54,12 @@ const Navbar = () => {
         Stock
       </Link>
       <button type="button" onClick={logOut} className="logoutButton">
+        <FontAwesomeIcon
+          className="icon"
+          icon={faSignOutAlt}
+          size="sm"
+          color="#993399"
+        />
         Log out
       </button>
     </aside>

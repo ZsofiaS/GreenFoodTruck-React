@@ -4,6 +4,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
+import { useHistory } from 'react-router';
 import {
   addProduct,
   cancelOrder,
@@ -16,6 +17,7 @@ import '../styles/Home.scss';
 import Product from './Product';
 import Button from './Button';
 import OrderItem from './OrderItem';
+import { auth } from '../firebase/firebaseConfig';
 
 const Home = () => {
   const availableProducts = useSelector((state) => state.order.products);
@@ -68,10 +70,15 @@ const Home = () => {
     });
   };
 
+  const history = useHistory();
+
   useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      if (!user) history.push('/');
+    });
     dispatch(fetchOrders());
     dispatch(fetchIngredients());
-  }, [dispatch]);
+  }, [dispatch, history]);
 
   return (
     <div className="Home">

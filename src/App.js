@@ -8,6 +8,7 @@ import {
   faPoundSign,
 } from '@fortawesome/free-solid-svg-icons';
 import Home from './components/Home.js';
+import Main from './components/Main.js';
 import Ingredients from './components/Ingredients.js';
 import Sales from './components/Sales.js';
 import './App.scss';
@@ -46,7 +47,8 @@ const App = () => (
       </aside>
 
       <main>
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" component={Main} />
+        <Route path="/home" component={Home} />
         <Route path="/sales" component={Sales} />
         <Route path="/stock" component={Ingredients} />
       </main>

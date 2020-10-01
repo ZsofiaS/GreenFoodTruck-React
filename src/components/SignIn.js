@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { auth } from '../firebase/firebaseConfig';
+import '../styles/SignIn.scss';
 
 const SignIn = () => {
   const history = useHistory();
@@ -19,8 +20,8 @@ const SignIn = () => {
   };
 
   return (
-    <div>
-      <h1>Sign in to your account</h1>
+    <div className="signIn">
+      <h1 className="signIn-title">Sign in to your account</h1>
       <input
         type="text"
         placeholder="Enter your email"

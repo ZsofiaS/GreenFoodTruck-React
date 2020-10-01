@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 import { auth } from '../firebase/firebaseConfig';
+import '../styles/Main.scss';
 
 const Main = () => {
   const history = useHistory();
@@ -15,23 +16,31 @@ const Main = () => {
   });
 
   return (
-    <div>
+    <div className="main">
       {authType === 'signIn' ? (
-        <div>
+        <div className="main-container">
           <SignIn />
           <p>
             Don't have an account?{' '}
-            <button type="button" onClick={() => setAuthType('signUp')}>
+            <button
+              type="button"
+              className="smallButton"
+              onClick={() => setAuthType('signUp')}
+            >
               Sign Up
             </button>
           </p>
         </div>
       ) : (
-        <div>
+        <div className="main-container">
           <SignUp />
-          <p>
+          <p className="main-container-p">
             Do you have an account?{' '}
-            <button type="button" onClick={() => setAuthType('signIn')}>
+            <button
+              type="button"
+              className="smallButton"
+              onClick={() => setAuthType('signIn')}
+            >
               Sign In
             </button>
           </p>

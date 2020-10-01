@@ -1,0 +1,40 @@
+$purple: #993399;
+
+.signIn {
+    display: flex;
+    flex-direction: column;
+    &-title {
+        margin: 1rem;
+    }
+    button {
+        display: inline-block;
+        width: 50%;
+        background-color: $purple;
+        color: white;
+        padding: 1rem;
+        margin: 1rem auto; 
+        font-size: 2rem;
+        border-radius: 5px;
+        border: none;
+        box-shadow: 2px 2px 2px grey;
+    
+        &:active {
+            box-shadow: none;
+            transform: translate(5%, 5%);
+        }
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+input {
+    padding: 0.7rem;
+    margin: 0.3rem;
+    border-radius: 5px;
+    font-size: 1.8rem;
+    border: 1px solid gainsboro;
+}
+::placeholder {
+    font-family: 'Work Sans', sans-serif;
+}

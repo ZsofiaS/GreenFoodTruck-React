@@ -11,7 +11,11 @@ const Main = () => {
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
-      if (user) history.push('/home');
+      console.log(auth.currentUser);
+      if (user) {
+        history.push('/home');
+        console.log(user.email);
+      }
     });
   });
 

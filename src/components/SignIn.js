@@ -12,7 +12,8 @@ const SignIn = () => {
     auth
       .signInWithEmailAndPassword(email, password)
       .then((res) => {
-        history.push('/main');
+        history.push('/home');
+        console.log(res.user);
       })
       .catch((err) => {
         console.log(err);
@@ -34,7 +35,9 @@ const SignIn = () => {
         value={password}
         onChange={(e) => setPassword(e.currentTarget.value)}
       />
-      <button onClick={signIn}>Sign In</button>
+      <button type="button" onClick={signIn}>
+        Sign In
+      </button>
     </div>
   );
 };

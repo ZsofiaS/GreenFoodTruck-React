@@ -17,7 +17,6 @@ import '../styles/Home.scss';
 import Product from './Product';
 import Button from './Button';
 import OrderItem from './OrderItem';
-import Navbar from './Navbar';
 import { auth } from '../firebase/firebaseConfig';
 
 const Home = () => {
@@ -75,7 +74,11 @@ const Home = () => {
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
-      if (!user) history.push('/');
+      if (!user) {
+        history.push('/');
+      } else {
+        console.log(user);
+      }
     });
     dispatch(fetchOrders());
     dispatch(fetchIngredients());
@@ -83,7 +86,6 @@ const Home = () => {
 
   return (
     <>
-      <Navbar />
       <div className="Home">
         <section className="Home-input">
           {availableProducts.map((product, id) => (

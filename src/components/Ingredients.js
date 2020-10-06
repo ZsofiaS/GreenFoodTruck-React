@@ -9,24 +9,19 @@ import {
   faWindowClose,
 } from '@fortawesome/free-solid-svg-icons';
 
+import { useHistory } from 'react-router';
 import { fetchIngredients } from '../store/actions/order';
 import Button from './Button.js';
-import Navbar from './Navbar.js';
+import { auth } from '../firebase/firebaseConfig';
 
 const Ingredients = () => {
   const ingredients = useSelector((state) => state.order.ingredients);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const [hidden, setHidden] = useState(true);
   const [selected, setSelected] = useState(null);
   const [purchased, setPurchased] = useState(0);
-  // const myRef = useRef();
-
-  // const detectClickOutside = (e) => {
-  //   if (!myRef.current.contains(e.target)) {
-  //     setHidden(true);
-  //   }
-  // };
 
   const toggleHide = () => {
     setHidden(!hidden);
@@ -74,14 +69,18 @@ const Ingredients = () => {
   };
 
   useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      if (!user) {
+        history.push('/');
+      } else {
+        console.log(user.email);
+      }
+    });
     dispatch(fetchIngredients());
-    // document.addEventListener('mousedown', detectClickOutside);
-    // return () => document.removeEventListener('mousedown', detectClickOutside);
-  }, [dispatch]);
+  }, [dispatch, history]);
 
   return (
     <>
-      <Navbar />
       <section className="Ingredients">
         <h1 className="Ingredients-title">Ingredients available</h1>
         {Object.entries(ingredients).map((item) => {

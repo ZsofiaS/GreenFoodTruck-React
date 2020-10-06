@@ -123,3 +123,7 @@ export const updateIngredients = (product) => ({
   type: 'UPDATE_INGREDIENTS',
   item: product,
 });
+export const saveUser = (user) => ({
+  type: 'SAVE_USER',
+  user,
+});

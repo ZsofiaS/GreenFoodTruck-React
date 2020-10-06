@@ -11,20 +11,28 @@ import {
   ComposedChart,
   Legend,
 } from 'recharts';
-import Navbar from './Navbar';
+import { useHistory } from 'react-router';
 import { fetchOrders } from '../store/actions/order';
 import '../styles/Sales.scss';
+import { auth } from '../firebase/firebaseConfig';
 
 const Sales = () => {
   const reports = useSelector((state) => state.order.reports);
   const dispatch = useDispatch();
+  const history = useHistory();
   useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      if (!user) {
+        history.push('/');
+      } else {
+        console.log(user.email);
+      }
+    });
     dispatch(fetchOrders());
-  }, [dispatch]);
+  }, [dispatch, history]);
 
   return (
     <>
-      <Navbar />
       <section className="Sales">
         <div className="Sales-chart">
           <h1>Total sales (£)</h1>

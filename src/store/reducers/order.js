@@ -10,6 +10,7 @@ const initialState = {
   totalAmount: 0,
   orders: [],
   reports: [],
+  user: null,
 };
 
 const orderReducer = (state = initialState, action) => {
@@ -87,6 +88,11 @@ const orderReducer = (state = initialState, action) => {
       return {
         ...state,
         ingredients: stateIngredients,
+      };
+    case 'SAVE_USER':
+      return {
+        ...state,
+        user: action.user,
       };
     default:
       return state;

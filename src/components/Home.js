@@ -84,7 +84,7 @@ const Home = () => {
   const history = useHistory();
 
   useEffect(() => {
-    console.log(user);
+    console.log(currentUser);
     auth.onAuthStateChanged((user) => {
       if (!user) {
         history.push('/');

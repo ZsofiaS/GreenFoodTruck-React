@@ -96,7 +96,7 @@ const Home = () => {
     });
     dispatch(fetchOrders());
     dispatch(fetchIngredients());
-  }, [dispatch, history]);
+  }, [dispatch, history, user]);
 
   return (
     <>

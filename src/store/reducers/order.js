@@ -73,7 +73,6 @@ const orderReducer = (state = initialState, action) => {
       };
     case 'UPDATE_INGREDIENTS':
       const { item } = action;
-      console.log(state.ingredients);
       const stateIngredients = state.ingredients;
       const newIngredients = {};
       Object.entries(item.ingredients).map((ing) => {

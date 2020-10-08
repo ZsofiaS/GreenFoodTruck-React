@@ -31,7 +31,7 @@ const Home = () => {
   const [user, setUser] = useState(null);
   const availableProducts = useSelector((state) => state.order.products);
   const ingredients = useSelector((state) => state.order.ingredients);
-  const currentUser = useSelector((state) => state.firebase.auth);
+  // const currentUser = useSelector((state) => state.firebase.auth);
 
   const totalAmount = useSelector((state) => state.order.totalAmount);
   const addedProducts = useSelector((state) => {
@@ -84,7 +84,7 @@ const Home = () => {
   const history = useHistory();
 
   useEffect(() => {
-    console.log(currentUser);
+    console.log(user);
     auth.onAuthStateChanged((user) => {
       if (!user) {
         history.push('/');

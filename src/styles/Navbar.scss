@@ -18,8 +18,13 @@ $purple: #993399;
         font-size: 2rem;
         color: $purple;
         font-weight: bold;
-        padding: 0.2rem 0.5rem;
+        padding: 0.4rem 0.7rem;
         border-radius: 5px;
+        border: none;
+
+        &:hover {
+          cursor: pointer;
+      }
     }
     .icon {
         margin-right: 0.8rem;

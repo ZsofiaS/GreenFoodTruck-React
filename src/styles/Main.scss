@@ -22,10 +22,12 @@ $purple: #993399;
             box-shadow: 2px 2px 2px grey;
             border: none;
         
-            &:active {
-            }
             &:hover {
                 cursor: pointer;
+            }
+            &:active {
+                box-shadow: none;
+                transform: translate(2%, 2%);
             }
         }
         p {

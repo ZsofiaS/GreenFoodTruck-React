@@ -81,9 +81,10 @@ const Home = () => {
       if (!user) {
         history.push('/');
         console.log('no user');
+      } else {
+        dispatch(fetchOrders());
+        dispatch(fetchIngredients());
       }
-      dispatch(fetchOrders());
-      dispatch(fetchIngredients());
     });
   }, [dispatch, history]);
 

@@ -9,16 +9,8 @@ const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState();
-  // const dispatch = useDispatch();
 
   const signUp = async () => {
-    // setError(null);
-    // try {
-    //   await dispatch(authActions.signup(email, password));
-    //   history.push('/main');
-    // } catch (err) {
-    //   setError(err.message);
-    // }
     auth
       .createUserWithEmailAndPassword(email, password)
       .then((res) => {
@@ -28,12 +20,6 @@ const SignUp = () => {
         setError(err.message);
       });
   };
-
-  // useEffect(() => {
-  //   if (error) {
-
-  //   }
-  // }, [ error ]);
 
   return (
     <div className="signIn">

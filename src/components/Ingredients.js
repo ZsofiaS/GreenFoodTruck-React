@@ -68,7 +68,6 @@ const Ingredients = () => {
         ingredients,
       }),
     });
-
     toggleHide();
   };
 
@@ -76,7 +75,6 @@ const Ingredients = () => {
     auth.onAuthStateChanged((user) => {
       if (!user) {
         history.push('/');
-        console.log('no user');
       } else {
         dispatch(fetchIngredients());
       }

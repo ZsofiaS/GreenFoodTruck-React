@@ -13,12 +13,11 @@ const Main = () => {
     auth.onAuthStateChanged((user) => {
       if (user) {
         history.push('/home');
-        console.log(user.email);
       } else {
         console.log('no user');
       }
     });
-  });
+  }, [history]);
 
   return (
     <div className="main">

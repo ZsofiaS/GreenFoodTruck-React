@@ -1,8 +1,8 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable guard-for-in */
 /* eslint-disable jsx-a11y/interactive-supports-focus */
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch, connect } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
 import { useHistory } from 'react-router';
 import {
@@ -19,19 +19,9 @@ import Button from './Button';
 import OrderItem from './OrderItem';
 import { auth } from '../firebase/firebaseConfig';
 
-const enhance = connect(
-  // Map redux state to component props
-  ({ firebase: { auth, profile } }) => ({
-    auth,
-    profile,
-  })
-);
-
 const Home = () => {
-  const [user, setUser] = useState(null);
   const availableProducts = useSelector((state) => state.order.products);
   const ingredients = useSelector((state) => state.order.ingredients);
-  // const currentUser = useSelector((state) => state.firebase.auth);
 
   const totalAmount = useSelector((state) => state.order.totalAmount);
   const addedProducts = useSelector((state) => {
@@ -64,13 +54,16 @@ const Home = () => {
   const saveOrderHandler = (products, total, date, ingredients) => {
     const timeNow = moment(date, 'x').format('DD-MM-YYYY');
     saveIngredients(ingredients);
-    console.log(auth.currentUser);
     dispatch(saveOrder(products, total, timeNow));
     dispatch(fetchOrders());
   };
 
   const saveIngredients = async (ingredients) => {
-    await fetch(process.env.REACT_APP_INGREDIENTS_URL, {
+    let token;
+    await auth.currentUser.getIdToken().then((idToken) => {
+      token = idToken;
+    });
+    await fetch(`${process.env.REACT_APP_INGREDIENTS_URL}?auth=${token}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -84,19 +77,15 @@ const Home = () => {
   const history = useHistory();
 
   useEffect(() => {
-    console.log(user);
     auth.onAuthStateChanged((user) => {
       if (!user) {
         history.push('/');
         console.log('no user');
-      } else {
-        setUser(user);
-        console.log(user.email);
       }
+      dispatch(fetchOrders());
+      dispatch(fetchIngredients());
     });
-    dispatch(fetchOrders());
-    dispatch(fetchIngredients());
-  }, [dispatch, history, user]);
+  }, [dispatch, history]);
 
   return (
     <>
@@ -160,4 +149,4 @@ const Home = () => {
   );
 };
 
-export default enhance(Home);
+export default Home;

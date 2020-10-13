@@ -1,20 +1,32 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable guard-for-in */
 import OrderAdded from '../../models/OrderAdded';
+import { auth } from '../../firebase/firebaseConfig';
 
 export const addProduct = (item) => ({
   type: 'ADD_PRODUCT',
   product: item,
 });
 export const cancelOrder = () => ({ type: 'CANCEL_ORDER' });
-export const fetchIngredients = () => async (dispatch) => {
-  const response = await fetch(process.env.REACT_APP_INGREDIENTS_URL);
+export const fetchIngredients = () => async (dispatch, getState) => {
+  let token;
+  await auth.currentUser.getIdToken().then((idToken) => {
+    token = idToken;
+  });
+  const response = await fetch(
+    `${process.env.REACT_APP_INGREDIENTS_URL}?auth=${token}`
+  );
   const resData = await response.json();
   dispatch({ type: 'GET_INGREDIENTS', ingredients: resData.ingredients });
 };
-export const fetchOrders = () => async (dispatch) => {
+export const fetchOrders = () => async (dispatch, getState) => {
+  let token;
+  await auth.currentUser.getIdToken().then((idToken) => {
+    token = idToken;
+  });
+
   const response = await fetch(
-    'https://green-food-truck.firebaseio.com/orders.json'
+    `https://green-food-truck.firebaseio.com/orders.json?auth=${token}`
   );
 
   const resData = await response.json();
@@ -75,10 +87,15 @@ export const fetchOrders = () => async (dispatch) => {
   dispatch({ type: 'SET_ORDERS', orders: loadedOrders, reports: dailyReports });
 };
 export const saveOrder = (products, total, date = new Date()) => async (
-  dispatch
+  dispatch,
+  getState
 ) => {
+  let token;
+  await auth.currentUser.getIdToken().then((idToken) => {
+    token = idToken;
+  });
   const response = await fetch(
-    'https://green-food-truck.firebaseio.com/orders.json',
+    `https://green-food-truck.firebaseio.com/orders.json?auth=${token}`,
     {
       method: 'POST',
       headers: {

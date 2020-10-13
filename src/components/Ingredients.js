@@ -55,7 +55,11 @@ const Ingredients = () => {
 
   const purchaseIngredient = async () => {
     ingredients[selected[0]] += purchased;
-    await fetch(process.env.REACT_APP_INGREDIENTS_URL, {
+    let token;
+    await auth.currentUser.getIdToken().then((idToken) => {
+      token = idToken;
+    });
+    await fetch(`${process.env.REACT_APP_INGREDIENTS_URL}?auth=${token}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -72,11 +76,11 @@ const Ingredients = () => {
     auth.onAuthStateChanged((user) => {
       if (!user) {
         history.push('/');
+        console.log('no user');
       } else {
-        console.log(user.email);
+        dispatch(fetchIngredients());
       }
     });
-    dispatch(fetchIngredients());
   }, [dispatch, history]);
 
   return (

@@ -1,33 +1,32 @@
 import React, { useState } from 'react';
-// import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-// import { auth } from '../firebase/firebaseConfig';
+import { useHistory } from 'react-router-dom';
 import { Alert } from '@material-ui/lab';
+import { auth } from '../firebase/firebaseConfig';
 import '../styles/SignUp.scss';
-import * as authActions from '../store/actions/auth';
 
 const SignUp = () => {
-  // const history = useHistory();
+  const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const signUp = async () => {
-    setError(null);
-    try {
-      await dispatch(authActions.signup(email, password));
-    } catch (err) {
-      setError(err.message);
-    }
-    // auth
-    //   .createUserWithEmailAndPassword(email, password)
-    //   .then((res) => {
-    //     history.push('/main');
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    // setError(null);
+    // try {
+    //   await dispatch(authActions.signup(email, password));
+    //   history.push('/main');
+    // } catch (err) {
+    //   setError(err.message);
+    // }
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then((res) => {
+        history.push('/main');
+      })
+      .catch((err) => {
+        setError(err.message);
+      });
   };
 
   // useEffect(() => {

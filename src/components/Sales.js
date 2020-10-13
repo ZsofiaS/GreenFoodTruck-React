@@ -20,15 +20,15 @@ const Sales = () => {
   const reports = useSelector((state) => state.order.reports);
   const dispatch = useDispatch();
   const history = useHistory();
+
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
-      if (!user) {
-        history.push('/');
+      if (user) {
+        dispatch(fetchOrders());
       } else {
-        console.log(user.email);
+        history.push('/');
       }
     });
-    dispatch(fetchOrders());
   }, [dispatch, history]);
 
   return (
